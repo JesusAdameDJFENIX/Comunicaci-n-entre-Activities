@@ -1,0 +1,100 @@
+Objetivo:
+Dominar el uso de ConstraintLayout para crear pantallas con múltiples vistas.
+Implementar una transición de vistas mediante cambios de visibilidad y animaciones.
+Manejar la entrada de datos y su visualización en la misma actividad.
+
+1. XML de Diseño (activity_main.xml)
+Este archivo define la interfaz gráfica de la aplicación, es decir, lo que el usuario verá.
+
+Paso 1: Definir el ConstraintLayout
+El ConstraintLayout es el contenedor principal donde se colocan todos los elementos de la pantalla.
+Este contenedor te permite posicionar los elementos de manera flexible, usando restricciones para alinearlos entre sí o con los bordes de la pantalla.
+Paso 2: Añadir los campos de texto
+Dos campos de texto (para el nombre y la edad) se añaden para que el usuario pueda escribir.
+Estos campos tienen un "hint" o sugerencia (como "Nombre" y "Edad") que indica qué información debe ingresar el usuario.
+Paso 3: Añadir el botón de envío
+Se coloca un botón que el usuario presionará para enviar los datos ingresados.
+El botón está ubicado debajo de los campos de texto y su función será procesar la información cuando se presione.
+Paso 4: Añadir las vistas para mostrar los datos
+Se añaden dos etiquetas (TextView) que inicialmente están ocultas. Estas etiquetas se usarán para mostrar el nombre y la edad que el usuario ingrese después de presionar el botón de envío.
+Las etiquetas se mostrarán cuando el usuario haya enviado los datos.
+Paso 5: Añadir el botón para regresar al formulario
+También se coloca un botón que permite al usuario regresar al formulario después de haber enviado los datos.
+Este botón está inicialmente oculto y solo aparece cuando el usuario ha enviado la información.
+
+Asi es como se ve el código
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Formulario -->
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="32dp" />
+
+    <EditText
+        android:id="@+id/editTextAge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Edad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextName"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextAge"
+        android:layout_marginTop="16dp" />
+
+    <!-- Pantalla Principal (inicialmente oculta) -->
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        android:layout_marginTop="32dp" />
+
+    <TextView
+        android:id="@+id/textViewAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edad: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewName"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regresar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewAge"
+        android:visibility="gone"
+        android:layout_marginTop="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
